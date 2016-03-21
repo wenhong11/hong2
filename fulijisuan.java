@@ -26,9 +26,9 @@ public class fulijisuan {
 		int choise;
 		Scanner scanner =new Scanner(System.in);
 		do{
-			System.out.println("求复利终值请输入1,求本金请输入2,求利率请输入3，求年限请输入4,求利滚利请输入5：");
+			System.out.println("求复利终值请输入1,求本金请输入2,求利率请输入3，求年限请输入4,求定额定投请输入5，求每月还款求输入6：");
 		    choise=scanner.nextInt();
-		}while(choise!=1&&choise!=2&&choise!=3&&choise!=4&&choise!=5);
+		}while(choise!=1&&choise!=2&&choise!=3&&choise!=4&&choise!=5&&choise!=6);
 		if(choise==1){
 		
 		Scanner input = new Scanner(System.in);
@@ -98,7 +98,11 @@ public class fulijisuan {
 	
 	
 	if(choise==5){
-		Scanner input = new Scanner(System.in);
+		System.out.println("按年定额定投请按1，按月定额定投请按2：  ");
+        Scanner input = new Scanner(System.in);
+		int num = input.nextInt();
+		if(num==1){
+		
 		System.out.println("请输入存入本金:");
 		double m = input.nextDouble();
 	    System.out.println("请输入年利率:");
@@ -109,14 +113,37 @@ public class fulijisuan {
 		int n = input.nextInt();
 		DecimalFormat df2 = new DecimalFormat("#.000");
 		
-		for (int j = 0; j < y*n; j++) {
-			m = m * (1 + r);
-		}
-		double F = m;
-	
-	System.out.println("利滚利:"+df2.format(F));
+		  double F = m*(Math.pow(1+r, y)-1)/r;
+	System.out.println("按年定额定投:"+df2.format(F));
 	}
-	
+		if(num==2){
+			System.out.println("请输入存入本金:");
+			double m = input.nextDouble();
+		    System.out.println("请输入年利率:");
+		    double r = input.nextDouble();
+			System.out.println("请输入存入年限:");
+			int y = input.nextInt();
+			System.out.println("请输入年复利次数：");
+			int n = input.nextInt();
+			DecimalFormat df2 = new DecimalFormat("#.000");
+			double F = m*(Math.pow(1+r/12.0, y*12)-1)/(r/12);
+			System.out.println("按月定额定投:"+df2.format(F));
+			
+		}
+	}
+	if(choise==6){
+	Scanner input = new Scanner(System.in);
+	System.out.println("请输入贷款本金:");
+	double m = input.nextDouble();
+    System.out.println("请输入贷款利率:");
+    double r = input.nextDouble();
+	System.out.println("请输入贷款年限:");
+	int y = input.nextInt();
+	DecimalFormat df2 = new DecimalFormat("#.000");
+	double H = m*(((r/12)*(Math.pow(1+r/12, y*12)))/(Math.pow(1+r/12, y*12)-1));
+	System.out.println("需每月还款："+df2.format(H));
 
 	}
+	}
+	
 }
