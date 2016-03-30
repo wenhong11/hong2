@@ -1,5 +1,7 @@
-  
-	  
+package fuli;
+
+
+import java.text.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -43,8 +45,8 @@ public class fulijisuan {
 		DecimalFormat df2 = new DecimalFormat("#.000");
 		double F = (Math.pow((1+r/n), y*n))*m;
 		System.out.println("复利终值:"+df2.format(F));
-		double S =(1+r*y)*m;
-		System.out.println("单利终值："+df2.format(S));
+		//double S =(1+r*y)*m;
+		//System.out.println("单利终值："+df2.format(S));
 		
 
 
@@ -144,6 +146,41 @@ public class fulijisuan {
 	System.out.println("需每月还款："+df2.format(H));
 
 	}
+	}
+
+	public double F(int m, double r, int y) {
+		double F = (Math.pow((1+r), y))*m;
+		return F;
+	}
+
+	public double money(double F, double r, int y) {
+		double m= F/(Math.pow((1+r), y));
+		return m;
+	}
+
+	public double rare(double F, int y, int m) {
+		double r =( Math.pow(F/m, 1.0 / y))-1;
+		return r;
+	}
+
+	public double year(double F, int m, double r) {
+		double y=Math.log((double)(F/m))/(Math.log((double)(1+r)));
+		return y;
+	}
+
+	public double value1(int m, double r, int y) {
+		double F = m*(Math.pow(1+r, y)-1)/r;
+		return F;
+	}
+
+	public double value2(int m, double r, int y) {
+		double F = m*(Math.pow(1+r/12.0, y*12)-1)/(r/12);
+		return F;
+	}
+
+	public double huankuan(int m, double r, int y) {
+		double H = m*(((r/12)*(Math.pow(1+r/12, y*12)))/(Math.pow(1+r/12, y*12)-1));
+		return H;
 	}
 	
 }
